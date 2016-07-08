@@ -1,4 +1,4 @@
-#**Singleton**
+#**Observer Pattern**
 
 
 ----------
