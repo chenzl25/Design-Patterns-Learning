@@ -103,8 +103,8 @@ class Visitor {
 class Interpreter: public Visitor {
  public:
   void visit(PlusExp* plus_exp) {
-    plus_exp->_left->visit(this);
-    plus_exp->_right->visit(this);
+    plus_exp->_left->accept(this);
+    plus_exp->_right->accept(this);
     int right_value = Stack::getInstance()->pop();
     int left_value = Stack::getInstance()->pop();
     Stack::getInstance()->push(left_value + right_value);
