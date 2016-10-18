@@ -10,7 +10,7 @@ For a AST, we may do serval pass to do different thing, like: type-check, genera
 
 ----------
 ###*Sample Code:*
-```
+```c++
 class Exp {
  public:
   virtual void eval();  
@@ -54,7 +54,7 @@ However, if our AST's structure is certain and unchanged, It is better to use Vi
 **next we give some code in Visitor pattern**
 
 ###*Sample Code:*
-```
+```c++
 class Exp {
  public:
   virtual void accept(Visitor* v);  
@@ -94,10 +94,10 @@ class DivExp : public Exp {
 
 class Visitor {
  public:
-  virtual void visitor(PlusExp* plus_exp);
-  virtual void visitor(MulExp* mul_exp);
-  virtual void visitor(SubExp* sub_exp);
-  virtual void visitor(DivExp* div_exp);
+  virtual void visit(PlusExp* plus_exp);
+  virtual void visit(MulExp* mul_exp);
+  virtual void visit(SubExp* sub_exp);
+  virtual void visit(DivExp* div_exp);
 };
 
 class Interpreter: public Visitor {
@@ -109,9 +109,9 @@ class Interpreter: public Visitor {
     int left_value = Stack::getInstance()->pop();
     Stack::getInstance()->push(left_value + right_value);
   }
-  virtual void visitor(MulExp* mul_exp); 
-  virtual void visitor(SubExp* sub_exp);
-  virtual void visitor(DivExp* div_exp);
+  virtual void visit(MulExp* mul_exp); 
+  virtual void visit(SubExp* sub_exp);
+  virtual void visit(DivExp* div_exp);
 };
 ```
 
